@@ -1,21 +1,16 @@
 {
     "name": "aramirez-es/roar",
-    "require-dev": {
-        "phpspec/phpspec": "2.0.*@dev"
-    },
-    "config": {
-        "bin-dir": "bin"
-    },
-    "autoload": {
-        "psr-0": {"": "src"}
-    },
     "authors": [
         {
             "name": "Alberto Ramirez",
             "email": "alberto@aramirez.es"
         }
     ],
-    "require": {
-
-    }
+    "require-dev": {
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {"psr-0": {"": "src"}}
 }
