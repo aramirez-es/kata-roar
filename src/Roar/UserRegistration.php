@@ -4,9 +4,19 @@ namespace Roar;
 
 class UserRegistration
 {
+    private $users = [];
 
-    public function register($argument1)
+    public function register($user)
     {
-        // TODO: write logic here
+        if ($this->userExists($user)) {
+            throw new \InvalidArgumentException();
+        }
+
+        $this->users[] = $user;
+    }
+
+    public function userExists($user)
+    {
+        return in_array($user, $this->users);
     }
 }
