@@ -5,8 +5,13 @@ namespace spec\Roar;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class UserRegistrationSpec extends ObjectBehavior
+class UserServiceSpec extends ObjectBehavior
 {
+    function let()
+    {
+        $this->beConstructedWith(new \Roar\UserRepository());
+    }
+
     function it_allows_registering_a_user_by_username()
     {
         $username = '@aramirez_';
@@ -23,10 +28,14 @@ class UserRegistrationSpec extends ObjectBehavior
         $this->shouldThrow('\InvalidArgumentException')->during('register', [$username]);
     }
 
-    function it_should_says_user_does_not_exists_if_it_was_not_registered_before()
+    function it_should_follow_other_users()
     {
         $username = '@aramirez_';
 
-        $this->userExists($username)->shouldBe(false);
+        $this->follow($username, '@fiunchinho');
+        $this->follow($username, '@pasku1');
+        $this->follow($username, '@jacegu');
+
+        $this->getFollowers($username)->shouldReturn(['@fiunchinho', '@pasku1', '@jacegu']);
     }
 }
