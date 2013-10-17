@@ -3,7 +3,7 @@
 namespace spec\Roar;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use PhpSpec\Matcher\InlineMatcher;
 
 class UserServiceSpec extends ObjectBehavior
 {
@@ -14,28 +14,54 @@ class UserServiceSpec extends ObjectBehavior
 
     function it_allows_registering_a_user_by_username()
     {
-        $username = '@aramirez_';
+        $user = $this->anUser('@aramirez_');
 
-        $this->register($username);
-        $this->userExists($username)->shouldBe(true);
+        $this->register($user);
+        $this->userExists($user)->shouldBe(true);
     }
 
     function it_throw_an_exception_if_user_already_exists()
     {
-        $username = '@aramirez_';
+        $user = $this->anUser('@aramirez_');
 
-        $this->register($username);
-        $this->shouldThrow('\InvalidArgumentException')->during('register', [$username]);
+        $this->register($user);
+        $this->shouldThrow('\InvalidArgumentException')->during('register', [$user]);
     }
 
-    function it_should_follow_other_users()
+    function it_follows_other_users_and_list_all_followings()
     {
-        $username = '@aramirez_';
+        $user = $this->anUser('@aramirez_');
+        $following1 = $this->anUser('@fiunchinho');
 
-        $this->follow($username, '@fiunchinho');
-        $this->follow($username, '@pasku1');
-        $this->follow($username, '@jacegu');
+        $this->register($user);
+        $this->register($following1);
 
-        $this->getFollowers($username)->shouldReturn(['@fiunchinho', '@pasku1', '@jacegu']);
+        $this->follow($user, $following1);
+        $this->getFollowers($user)->shouldBeArray();
+        $this->getFollowers($user)->shouldHaveValue($following1);
+    }
+
+    function it_should_return_no_followings_if_username_does_not_exist()
+    {
+        $this->getFollowers('@user_does_not_exist')->shouldReturn([]);
+    }
+
+    public function getMatchers()
+    {
+        return [
+            'haveValue' => function($array_of_followings, $username) {
+                foreach ($array_of_followings as $following) {
+                    if ($following->getUsername() === $username) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+        ];
+    }
+
+    private function anUser($username)
+    {
+        return $username;
     }
 }

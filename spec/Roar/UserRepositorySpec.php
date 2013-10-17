@@ -10,8 +10,9 @@ class UserRepositorySpec extends ObjectBehavior
     function it_adds_an_user()
     {
         $username = '@aramirez_';
+        $user = new \Roar\User($username);
 
-        $this->add($username);
+        $this->add($user);
         $this->exists($username)->shouldBe(true);
     }
 
@@ -20,5 +21,14 @@ class UserRepositorySpec extends ObjectBehavior
         $username = '@user_that_does_not_exist';
 
         $this->exists($username)->shouldBe(false);
+    }
+
+    function it_get_an_user_previously_added()
+    {
+        $username = '@existing_username';
+        $user = new \Roar\User($username);
+
+        $this->add($user);
+        $this->get($username)->shouldBe($user);
     }
 }

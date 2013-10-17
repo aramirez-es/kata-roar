@@ -5,42 +5,42 @@ namespace Roar;
 class UserService
 {
     private $user_repository;
-    private $following_graph = [];
 
     public function __construct($user_repository)
     {
         $this->user_repository = $user_repository;
     }
 
-    public function register($user)
+    public function register($username)
     {
-        if ($this->userExists($user)) {
+        if ($this->userExists($username)) {
             throw new \InvalidArgumentException();
         }
 
-        $this->user_repository->add($user);
+        $this->user_repository->add(new User($username));
     }
 
-    public function userExists($user)
+    public function userExists($username)
     {
-        return $this->user_repository->exists($user);
+        return $this->user_repository->exists($username);
     }
 
-    public function getFollowers($user)
+    public function follow($username, $username_to_follow)
     {
-        if (isset($this->following_graph[$user])) {
-            return $this->following_graph[$user];
+        if ($this->userExists($username)) {
+            $user       = $this->user_repository->get($username);
+            $following  = $this->user_repository->get($username_to_follow);
+
+            $user->follow($following);
+        }
+    }
+
+    public function getFollowers($username)
+    {
+        if ($this->userExists($username)) {
+            return $this->user_repository->get($username)->getFollowings();
         }
 
         return [];
-    }
-
-    public function follow($user, $user_to_follow)
-    {
-        if (!isset($this->following_graph[$user])) {
-            $this->following_graph[$user] = [];
-        }
-
-        $this->following_graph[$user][] = $user_to_follow;
     }
 }
