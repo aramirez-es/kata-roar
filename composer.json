@@ -6,6 +6,9 @@
             "email": "alberto@aramirez.es"
         }
     ],
+    "require": {
+        "silex/silex": "1.1.1"
+    },
     "require-dev": {
         "phpspec/phpspec": "2.0.*@dev"
     },
