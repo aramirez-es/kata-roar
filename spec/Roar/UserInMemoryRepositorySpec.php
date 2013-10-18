@@ -5,7 +5,7 @@ namespace spec\Roar;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class UserRepositorySpec extends ObjectBehavior
+class UserInMemoryRepositorySpec extends ObjectBehavior
 {
     function it_adds_an_user()
     {
