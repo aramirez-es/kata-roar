@@ -13,3 +13,6 @@ This kata was presented in CAS2K13 by @pasku1 and @jacegu.
 
 ### THIRD ITERATION
 * Both users registration and user list followed must be persistent.
+
+### FOURTH ITERATION
+* Make http delivery mechanism that allow to access all previous functionality.
