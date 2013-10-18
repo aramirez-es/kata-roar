@@ -10,6 +10,7 @@ class UserMongoDBRepositorySpec extends ObjectBehavior
 {
     function let()
     {
+        // Don't blame me for using Mongo instead MongoClient :-)
         $mongodb_connection = new \Mongo();
         $database = $mongodb_connection->selectDB('roar');
 

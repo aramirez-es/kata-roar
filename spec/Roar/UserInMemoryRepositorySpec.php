@@ -15,7 +15,7 @@ class UserInMemoryRepositorySpec extends ObjectBehavior
     function it_adds_an_user()
     {
         $username = '@aramirez_';
-        $user = new \Roar\User($username);
+        $user = $this->anUser($username);
 
         $this->add($user);
         $this->exists($username)->shouldBe(true);
@@ -28,12 +28,18 @@ class UserInMemoryRepositorySpec extends ObjectBehavior
         $this->exists($username)->shouldBe(false);
     }
 
-    function it_get_an_user_previously_added()
+    function it_get_an_user_with_followings_previously_added()
     {
         $username = '@existing_username';
-        $user = new \Roar\User($username);
+        $user = $this->anUser($username);
+        $user->follow($this->anUser('@cool_user'));
 
         $this->add($user);
         $this->get($username)->shouldBe($user);
+    }
+
+    private function anUser($username)
+    {
+        return new \Roar\User($username);
     }
 }
