@@ -4,11 +4,19 @@ namespace spec\Roar;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Roar\Factory;
 
 class UserSpec extends ObjectBehavior
 {
+    /**
+     * @var \Roar\Factory
+     */
+    private $factory;
+
     function let()
     {
+        $this->factory = new Factory();
+
         $this->beConstructedWith('@aramirez_');
     }
 
@@ -32,6 +40,6 @@ class UserSpec extends ObjectBehavior
 
     private function anUser($username)
     {
-        return new \Roar\User($username);
+        return $this->factory->anUser($username);
     }
 }

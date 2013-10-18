@@ -4,12 +4,15 @@ namespace spec\Roar;
 
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Matcher\InlineMatcher;
+use Roar\Factory;
 
 class UserServiceSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(new \Roar\UserInMemoryRepository());
+        $factory = new Factory();
+
+        $this->beConstructedWith($factory->anInMemoryUserRepository());
     }
 
     function it_allows_registering_a_user_by_username()

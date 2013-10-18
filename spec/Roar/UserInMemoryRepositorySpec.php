@@ -4,9 +4,20 @@ namespace spec\Roar;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Roar\Factory;
 
 class UserInMemoryRepositorySpec extends ObjectBehavior
 {
+    /**
+     * @var \Roar\Factory
+     */
+    private $factory;
+
+    function let()
+    {
+        $this->factory = new Factory();
+    }
+
     function it_ensure_repository_methods()
     {
         $this->shouldHaveType('Roar\UserRepository');
@@ -40,6 +51,6 @@ class UserInMemoryRepositorySpec extends ObjectBehavior
 
     private function anUser($username)
     {
-        return new \Roar\User($username);
+        return $this->factory->anUser($username);
     }
 }

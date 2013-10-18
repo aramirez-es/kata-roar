@@ -5,6 +5,7 @@ namespace spec\Roar;
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Matcher\InlineMatcher;
 use Prophecy\Argument;
+use Roar\Factory;
 
 class UserMongoDBRepositorySpec extends ObjectBehavior
 {
@@ -30,8 +31,9 @@ class UserMongoDBRepositorySpec extends ObjectBehavior
 
     function it_adds_an_user()
     {
+        $factory = new Factory();
         $username = '@aramirez_';
-        $user = new \Roar\User($username);
+        $user = $factory->anUser($username);
 
         $this->add($user);
         $this->exists($username)->shouldReturn(true);
