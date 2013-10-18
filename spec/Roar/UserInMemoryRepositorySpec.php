@@ -7,6 +7,11 @@ use Prophecy\Argument;
 
 class UserInMemoryRepositorySpec extends ObjectBehavior
 {
+    function it_ensure_repository_methods()
+    {
+        $this->shouldHaveType('Roar\UserRepository');
+    }
+
     function it_adds_an_user()
     {
         $username = '@aramirez_';

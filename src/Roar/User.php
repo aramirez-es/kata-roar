@@ -27,8 +27,8 @@ class User
         return $this->following_collection;
     }
 
-    public function __toString()
+    public function isEqualTo(User $other)
     {
-        return spl_object_hash($this);
+        return $this->getUsername() === $other->getUsername();
     }
 }

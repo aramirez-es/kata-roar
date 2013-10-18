@@ -30,11 +30,6 @@ class UserSpec extends ObjectBehavior
         $this->getFollowings()->shouldReturn([$user1, $user2, $user3]);
     }
 
-    function it_can_be_converted_to_string()
-    {
-        $this->__toString()->shouldBeString();
-    }
-
     private function anUser($username)
     {
         return new \Roar\User($username);
