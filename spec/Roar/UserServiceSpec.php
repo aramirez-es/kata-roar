@@ -9,7 +9,7 @@ class UserServiceSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(new \Roar\UserRepository());
+        $this->beConstructedWith(new \Roar\UserInMemoryRepository());
     }
 
     function it_allows_registering_a_user_by_username()
