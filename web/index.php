@@ -3,13 +3,14 @@
 /**
  * Single entry point to the application.
  */
+
 use Symfony\Component\HttpFoundation\JsonResponse as Response;
 
 require_once realpath( __DIR__ . '/../' ) . '/vendor/autoload.php';
 
 $app = new Silex\Application();
 $user_domain_factory = new Core\Roar\Factory();
-$mongo_connection = new Mongo();
+$mongo_connection = new Mongo(); // Don't blame me by using Mongo instead MongoClient.
 $user_repository = $user_domain_factory->anUserMongoDBRepository($mongo_connection->selectDB('roar'));
 $user_service = $user_domain_factory->userService($user_repository);
 
