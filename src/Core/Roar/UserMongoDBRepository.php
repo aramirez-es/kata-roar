@@ -1,6 +1,6 @@
 <?php
 
-namespace Roar;
+namespace Core\Roar;
 
 class UserMongoDBRepository implements UserRepository
 {

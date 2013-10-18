@@ -1,11 +1,12 @@
 <?php
 
-namespace spec\Roar;
+namespace spec\Core\Roar;
 
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Matcher\InlineMatcher;
 use Prophecy\Argument;
-use Roar\Factory;
+use Core\Roar\Factory;
+use Core\Roar\User;
 
 class UserMongoDBRepositorySpec extends ObjectBehavior
 {
@@ -26,7 +27,7 @@ class UserMongoDBRepositorySpec extends ObjectBehavior
 
     function it_ensure_repository_methods()
     {
-        $this->shouldHaveType('Roar\UserRepository');
+        $this->shouldHaveType('Core\Roar\UserRepository');
     }
 
     function it_adds_an_user()
@@ -50,7 +51,7 @@ class UserMongoDBRepositorySpec extends ObjectBehavior
     public function getMatchers()
     {
         return [
-            'beUser' => function(\Roar\User $user, \Roar\User $other) {
+            'beUser' => function(User $user, User $other) {
                 return $user->isEqualTo($other);
             },
         ];

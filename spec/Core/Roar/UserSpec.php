@@ -1,15 +1,15 @@
 <?php
 
-namespace spec\Roar;
+namespace spec\Core\Roar;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Roar\Factory;
+use Core\Roar\Factory;
 
 class UserSpec extends ObjectBehavior
 {
     /**
-     * @var \Roar\Factory
+     * @var \Core\Roar\Factory
      */
     private $factory;
 

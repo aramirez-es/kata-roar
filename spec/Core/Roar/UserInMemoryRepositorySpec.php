@@ -1,15 +1,15 @@
 <?php
 
-namespace spec\Roar;
+namespace spec\Core\Roar;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Roar\Factory;
+use Core\Roar\Factory;
 
 class UserInMemoryRepositorySpec extends ObjectBehavior
 {
     /**
-     * @var \Roar\Factory
+     * @var \Core\Roar\Factory
      */
     private $factory;
 
@@ -20,7 +20,7 @@ class UserInMemoryRepositorySpec extends ObjectBehavior
 
     function it_ensure_repository_methods()
     {
-        $this->shouldHaveType('Roar\UserRepository');
+        $this->shouldHaveType('Core\Roar\UserRepository');
     }
 
     function it_adds_an_user()

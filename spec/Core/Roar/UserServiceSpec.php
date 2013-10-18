@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Roar;
+namespace spec\Core\Roar;
 
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Matcher\InlineMatcher;
-use Roar\Factory;
+use Core\Roar\Factory;
 
 class UserServiceSpec extends ObjectBehavior
 {

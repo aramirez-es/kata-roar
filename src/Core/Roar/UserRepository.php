@@ -1,7 +1,6 @@
 <?php
 
-namespace Roar;
-
+namespace Core\Roar;
 
 interface UserRepository
 {
