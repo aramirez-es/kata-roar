@@ -11,8 +11,7 @@ require_once realpath( __DIR__ . '/../' ) . '/vendor/autoload.php';
 $app = new Silex\Application();
 $user_domain_factory = new Core\Roar\Factory();
 $mongo_connection = new Mongo(); // Don't blame me by using Mongo instead MongoClient.
-$user_repository = $user_domain_factory->anUserMongoDBRepository($mongo_connection->selectDB('roar'));
-$user_service = $user_domain_factory->userService($user_repository);
+$user_service = $user_domain_factory->userServicePersistent($mongo_connection->selectDB('roar'));
 
 $app->post('/users', function() use($app, $user_service){
 

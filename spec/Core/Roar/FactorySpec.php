@@ -20,7 +20,7 @@ class FactorySpec extends ObjectBehavior
     /**
      * @param \MongoDB $connection
      */
-    function it_should_return_a_mongodb_user_repository($connection)
+    function it_should_return_a_mongodb_user_repository(\MongoDB $connection)
     {
         $connection->selectCollection('user')->willReturn(null);
         $this->anUserMongoDBRepository($connection)->shouldHaveType('Core\Roar\UserMongoDBRepository');
@@ -30,5 +30,13 @@ class FactorySpec extends ObjectBehavior
     {
         $user_repository = $this->getWrappedObject()->anInMemoryUserRepository();
         $this->userService($user_repository)->shouldHaveType('Core\Roar\UserService');
+    }
+
+    /**
+     * @param \MongoDB $connection
+     */
+    function it_should_return_user_service_with_persistent_storage(\MongoDB $connection)
+    {
+        $this->userServicePersistent($connection)->shouldHaveType('Core\Roar\UserService');
     }
 }

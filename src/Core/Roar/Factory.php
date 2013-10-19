@@ -23,4 +23,9 @@ class Factory
     {
         return new UserService($user_repository);
     }
+
+    public function userServicePersistent(\MongoDB $connection)
+    {
+        return new UserService(new UserMongoDBRepository($connection));
+    }
 }
