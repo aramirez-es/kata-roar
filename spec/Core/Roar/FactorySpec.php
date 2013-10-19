@@ -28,8 +28,7 @@ class FactorySpec extends ObjectBehavior
 
     function it_should_return_the_user_service()
     {
-        $user_repository = $this->getWrappedObject()->anInMemoryUserRepository();
-        $this->userService($user_repository)->shouldHaveType('Core\Roar\UserService');
+        $this->userService()->shouldHaveType('Core\Roar\UserService');
     }
 
     /**

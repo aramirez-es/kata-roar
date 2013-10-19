@@ -19,9 +19,9 @@ class Factory
         return new UserMongoDBRepository($connection);
     }
 
-    public function userService(UserRepository $user_repository)
+    public function userService()
     {
-        return new UserService($user_repository);
+        return new UserService(new UserInMemoryRepository());
     }
 
     public function userServicePersistent(\MongoDB $connection)
